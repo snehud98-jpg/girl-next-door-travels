@@ -1,0 +1,693 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#65765b">
+  <meta name="description" content="Budget-friendly Europe travel itineraries, real trip costs, family adventures and travel tips by Girl Next Door Travels.">
+  <title>Girl Next Door Travels | Explore Europe on a Budget</title>
+
+  <style>
+    :root {
+      --sage: #65765b;
+      --sage-light: #e7ebdf;
+      --cream: #faf6ed;
+      --terracotta: #bd7158;
+      --dark: #30352c;
+      --white: #fffdf8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 85px; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; }
+
+    header {
+      background: var(--cream);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid #e7dfd0;
+    }
+
+    nav {
+      max-width: 1100px;
+      margin: auto;
+      padding: 14px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .logo {
+      font-family: Georgia, serif;
+      font-size: 20px;
+      font-weight: bold;
+      color: var(--sage);
+      line-height: 1.2;
+    }
+
+    .logo small {
+      display: block;
+      font: 10px Arial, sans-serif;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-top: 5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      font-size: 13px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a:hover { color: var(--terracotta); }
+
+    .hero {
+      max-width: 1100px;
+      margin: auto;
+      padding: 65px 22px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--terracotta);
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 68px);
+      line-height: 1.1;
+      margin: 18px 0;
+      font-weight: normal;
+    }
+
+    h1 em { color: var(--sage); }
+
+    .hero p { max-width: 470px; margin-bottom: 25px; color: #66675d; }
+
+    .btn {
+      display: inline-block;
+      border: 0;
+      background: var(--sage);
+      color: white;
+      padding: 12px 20px;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 13px;
+      transition: .2s;
+    }
+
+    .btn:hover { background: var(--terracotta); transform: translateY(-2px); }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--sage);
+      color: var(--sage);
+      margin-left: 7px;
+    }
+
+    .hero-image {
+      min-height: 360px;
+      border-radius: 48% 48% 8px 8px;
+      background:
+        linear-gradient(0deg, rgba(32,38,28,.15), transparent),
+        url("https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=1100&q=85")
+        center/cover;
+      position: relative;
+    }
+
+    .image-note {
+      position: absolute;
+      bottom: 18px;
+      left: 18px;
+      background: var(--white);
+      padding: 12px 16px;
+      border-radius: 6px;
+      font-size: 12px;
+    }
+
+    .intro-strip {
+      background: var(--sage-light);
+      padding: 24px 20px;
+      text-align: center;
+      color: var(--sage);
+      font-family: Georgia, serif;
+      font-size: 19px;
+    }
+
+    section { padding: 70px 22px; }
+
+    .container { max-width: 1100px; margin: auto; }
+
+    .section-heading { text-align: center; margin-bottom: 35px; }
+
+    .section-heading h2 {
+      font-size: clamp(30px, 4vw, 42px);
+      font-weight: normal;
+      margin: 8px 0;
+    }
+
+    .section-heading p { color: #77766b; font-size: 14px; }
+
+    .filters {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .filter {
+      padding: 8px 17px;
+      border: 1px solid #d7d8ca;
+      background: transparent;
+      color: var(--dark);
+      border-radius: 30px;
+      font-size: 12px;
+    }
+
+    .filter.active, .filter:hover {
+      background: var(--sage);
+      color: white;
+      border-color: var(--sage);
+    }
+
+    .trip-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 23px;
+    }
+
+    .trip-card {
+      background: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #eee7dc;
+      transition: .2s;
+    }
+
+    .trip-card:hover { transform: translateY(-4px); }
+
+    .trip-photo {
+      height: 215px;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .trip-tag {
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      background: var(--cream);
+      color: var(--sage);
+      border-radius: 3px;
+      padding: 5px 10px;
+      font-size: 10px;
+      font-weight: bold;
+    }
+
+    .trip-content { padding: 20px; }
+
+    .trip-content h3 { font-size: 24px; margin-bottom: 5px; }
+
+    .muted { color: #7d7b70; font-size: 12px; }
+
+    .trip-description { font-size: 13px; margin: 12px 0; }
+
+    .trip-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      border-top: 1px solid #eee7dc;
+      padding-top: 14px;
+      margin-top: 14px;
+    }
+
+    .price { color: var(--terracotta); font-weight: bold; font-size: 16px; }
+    .price small { display: block; font-size: 10px; color: #77766b; font-weight: normal; }
+
+    .details-btn {
+      background: none;
+      color: var(--sage);
+      border: 1px solid var(--sage);
+      padding: 8px 11px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .details-btn:hover { background: var(--sage); color: white; }
+
+    .itinerary {
+      display: none;
+      padding-top: 16px;
+      font-size: 13px;
+      border-top: 1px solid #eee7dc;
+      margin-top: 16px;
+    }
+
+    .itinerary.open { display: block; }
+    .itinerary li { margin: 8px 0 8px 18px; }
+    .itinerary strong { color: var(--sage); }
+
+    .budget-section { background: var(--sage-light); }
+
+    .budget-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 35px;
+      align-items: center;
+    }
+
+    .budget-layout h2 {
+      font-size: 38px;
+      line-height: 1.2;
+      font-weight: normal;
+      margin: 12px 0;
+    }
+
+    .budget-layout p { color: #686c60; font-size: 14px; }
+
+    .budget-box {
+      background: var(--white);
+      padding: 28px;
+      border-radius: 8px;
+    }
+
+    .budget-box label {
+      display: block;
+      font-size: 12px;
+      margin: 14px 0 5px;
+      font-weight: bold;
+    }
+
+    select, input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d8d8cc;
+      background: white;
+      border-radius: 4px;
+      color: var(--dark);
+    }
+
+    .budget-result {
+      background: var(--cream);
+      margin-top: 18px;
+      padding: 20px;
+      text-align: center;
+      border-radius: 6px;
+    }
+
+    .budget-result strong {
+      display: block;
+      font-size: 30px;
+      color: var(--terracotta);
+      margin: 5px;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .tip {
+      padding: 24px;
+      background: var(--white);
+      border: 1px solid #eee7dc;
+      border-radius: 6px;
+    }
+
+    .tip-icon { font-size: 27px; }
+    .tip h3 { font-size: 20px; margin: 10px 0; }
+    .tip p { font-size: 13px; color: #77766b; }
+
+    .about {
+      background: #efe4d4;
+      text-align: center;
+    }
+
+    .about-inner { max-width: 670px; margin: auto; }
+    .about h2 { font-size: 39px; font-weight: normal; margin: 10px 0 18px; }
+    .about p { color: #626156; margin-bottom: 22px; }
+
+    .instagram {
+      background: var(--terracotta);
+      color: white;
+      text-align: center;
+      padding: 48px 20px;
+    }
+
+    .instagram h2 { font-size: 32px; font-weight: normal; margin-bottom: 8px; }
+    .instagram p { font-size: 13px; margin-bottom: 20px; }
+
+    .instagram .btn { background: var(--cream); color: var(--dark); }
+
+    footer {
+      background: var(--dark);
+      color: #f7f2e8;
+      text-align: center;
+      padding: 25px 15px;
+      font-size: 11px;
+    }
+
+    footer a { text-decoration: underline; }
+
+    @media (max-width: 800px) {
+      .hero { grid-template-columns: 1fr; padding-top: 42px; gap: 25px; }
+      .hero-image { min-height: 320px; }
+      .trip-grid { grid-template-columns: repeat(2, 1fr); }
+      .budget-layout { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      nav { align-items: flex-start; flex-direction: column; }
+      .nav-links { gap: 13px; }
+      .hero { padding: 35px 20px; }
+      .hero-image { min-height: 280px; }
+      section { padding: 52px 18px; }
+      .trip-grid, .tips-grid { grid-template-columns: 1fr; }
+      .trip-photo { height: 235px; }
+      .btn-outline { margin: 10px 0 0; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <nav>
+    <a href="#home" class="logo">
+      Girl Next Door
+      <small>Travels · Stories · Budgets</small>
+    </a>
+
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#itineraries">Itineraries</a>
+      <a href="#budget">Budget planner</a>
+      <a href="#travel-tips">Travel tips</a>
+      <a href="#about">About me</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div>
+      <span class="eyebrow">Real trips. Honest budgets.</span>
+      <h1>See more.<br>Spend less.<br><em>Live fully.</em></h1>
+      <p>
+        Hey, I'm the girl next door exploring Europe!
+        Discover budget-friendly itineraries, real travel costs,
+        couple adventures and relatable family travel — all in one place.
+      </p>
+      <a class="btn" href="#itineraries">Explore itineraries ↗</a>
+      <a class="btn btn-outline" href="#about">My story</a>
+    </div>
+
+    <div class="hero-image" role="img" aria-label="Colorful European coastal village">
+      <div class="image-note">✈ A little trip, a lot of memories.</div>
+    </div>
+  </section>
+
+  <div class="intro-strip">
+    “You don't need a luxury budget to live a beautiful life.”
+  </div>
+
+  <section id="itineraries">
+    <div class="container">
+      <div class="section-heading">
+        <span class="eyebrow">Your next adventure</span>
+        <h2>Where shall we go?</h2>
+        <p>Explore sample itineraries and budget ideas for your next trip.</p>
+      </div>
+
+      <div class="filters">
+        <button class="filter active" data-filter="all">All trips</button>
+        <button class="filter" data-filter="city">City breaks</button>
+        <button class="filter" data-filter="nature">Nature</button>
+        <button class="filter" data-filter="family">Family trips</button>
+      </div>
+
+      <div class="trip-grid">
+
+        <article class="trip-card" data-category="city">
+          <div class="trip-photo" style="background-image:url('https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?auto=format&fit=crop&w=800&q=80')">
+            <span class="trip-tag">CITY BREAK</span>
+          </div>
+          <div class="trip-content">
+            <h3>Paris, France</h3>
+            <span class="muted">3 days · 2 nights · Sample plan</span>
+            <p class="trip-description">Iconic sights, charming streets and bakery stops without planning an extravagant trip.</p>
+            <div class="trip-bottom">
+              <div class="price">₹25,000 <small>Example per person</small></div>
+              <button class="details-btn" aria-expanded="false">View plan +</button>
+            </div>
+            <div class="itinerary">
+              <strong>Day 1:</strong> Eiffel Tower area and Seine river walk.
+              <ul><li>Explore the city streets.</li><li>Enjoy a bakery breakfast.</li></ul>
+              <strong>Day 2:</strong> Louvre area, Tuileries Garden and Montmartre.
+              <br><br><strong>Day 3:</strong> Local cafés and a relaxed city walk.
+              <p class="muted">Budget is illustrative, not a live quote. Flights, dates and accommodation change the total.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="trip-card" data-category="nature">
+          <div class="trip-photo" style="background-image:url('https://images.unsplash.com/photo-1531366936337-7c912a4589a7?auto=format&fit=crop&w=800&q=80')">
+            <span class="trip-tag">NATURE</span>
+          </div>
+          <div class="trip-content">
+            <h3>Swiss Alps</h3>
+            <span class="muted">4 days · 3 nights · Sample plan</span>
+            <p class="trip-description">Mountain scenery, lakeside strolls and scenic train journeys.</p>
+            <div class="trip-bottom">
+              <div class="price">₹45,000 <small>Example per person</small></div>
+              <button class="details-btn" aria-expanded="false">View plan +</button>
+            </div>
+            <div class="itinerary">
+              <strong>Day 1:</strong> Arrive and explore your base town.
+              <ul><li>Walk around the lake.</li><li>Try a supermarket picnic.</li></ul>
+              <strong>Day 2:</strong> Choose a mountain excursion.
+              <br><br><strong>Day 3:</strong> Explore nearby villages and viewpoints.
+              <br><br><strong>Day 4:</strong> Relaxed morning and departure.
+              <p class="muted">Mountain transport and lifts can be expensive. Verify current fares before booking.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="trip-card" data-category="family">
+          <div class="trip-photo" style="background-image:url('https://images.unsplash.com/photo-1514890547357-a9ee288728e0?auto=format&fit=crop&w=800&q=80')">
+            <span class="trip-tag">FAMILY TRAVEL</span>
+          </div>
+          <div class="trip-content">
+            <h3>Prague, Czechia</h3>
+            <span class="muted">3 days · 2 nights · Sample plan</span>
+            <p class="trip-description">A relaxed family city break with storybook streets, parks and plenty of photo stops.</p>
+            <div class="trip-bottom">
+              <div class="price">₹18,000 <small>Example per person</small></div>
+              <button class="details-btn" aria-expanded="false">View plan +</button>
+            </div>
+            <div class="itinerary">
+              <strong>Day 1:</strong> Old Town Square and riverside walk.
+              <ul><li>See the Astronomical Clock.</li><li>Find a family-friendly café.</li></ul>
+              <strong>Day 2:</strong> Prague Castle area and gardens.
+              <br><br><strong>Day 3:</strong> Parks, souvenirs and departure.
+              <p class="muted">Illustrative budget only. Family room and child transport costs vary.</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+      <p style="text-align:center;font-size:12px;color:#77766b;margin-top:25px">
+        These are starter examples. Replace them with your actual trip details and expenses before publishing.
+      </p>
+    </div>
+  </section>
+
+  <section class="budget-section" id="budget">
+    <div class="container budget-layout">
+      <div>
+        <span class="eyebrow">Plan smart, travel happy</span>
+        <h2>Your little travel budget planner</h2>
+        <p>Estimate your trip budget in INR. Adjust the number of travellers and your daily spending to see an instant estimate.</p>
+      </div>
+
+      <div class="budget-box">
+        <label for="people">Number of travellers</label>
+        <input type="number" id="people" value="2" min="1" max="30">
+
+        <label for="days">Number of days</label>
+        <input type="number" id="days" value="4" min="1" max="90">
+
+        <label for="hotel">Accommodation per night (INR, per room)</label>
+        <input type="number" id="hotel" value="5000" min="0">
+
+        <label for="daily">Food and activities per person, per day (INR)</label>
+        <input type="number" id="daily" value="2500" min="0">
+
+        <label for="transport">Total transport budget for everyone (INR)</label>
+        <input type="number" id="transport" value="10000" min="0">
+
+        <div class="budget-result" aria-live="polite">
+          Estimated trip total
+          <strong id="total">₹30,000</strong>
+          <span class="muted" id="perPerson">₹15,000 per person</span>
+        </div>
+        <p class="muted" style="margin-top:12px">Estimate only. Enter flights, insurance and other costs in transport or add them to your own calculation.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="travel-tips">
+    <div class="container">
+      <div class="section-heading">
+        <span class="eyebrow">Little things that help</span>
+        <h2>Travel tips from one friend to another</h2>
+        <p>Simple ideas for a smoother, more affordable trip.</p>
+      </div>
+
+      <div class="tips-grid">
+        <article class="tip">
+          <div class="tip-icon">🧳</div>
+          <h3>Pack lighter</h3>
+          <p>Check baggage rules before booking and plan outfits you can mix and match.</p>
+        </article>
+        <article class="tip">
+          <div class="tip-icon">🏡</div>
+          <h3>Choose stays wisely</h3>
+          <p>Compare the full cost, including cleaning fees, city taxes and transport to attractions.</p>
+        </article>
+        <article class="tip">
+          <div class="tip-icon">📸</div>
+          <h3>Capture the memories</h3>
+          <p>Plan a few special photo stops, but leave time to enjoy the destination without a camera.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="about-inner">
+      <span class="eyebrow">A little about me</span>
+      <h2>Just a girl next door, exploring Europe.</h2>
+      <p>
+        I share travel itineraries, honest budget breakdowns, couple adventures,
+        family moments and the unfiltered reality of exploring new places.
+        My goal is to help you plan your own adventures without overcomplicating them.
+      </p>
+      <a href="#itineraries" class="btn">Let's plan a trip ↗</a>
+    </div>
+  </section>
+
+  <section class="instagram" id="instagram">
+    <h2>Let's connect on Instagram ♡</h2>
+    <p>For more European adventures, relatable moments and travel inspiration.</p>
+    <!-- Replace YOUR_INSTAGRAM with your Instagram username -->
+    <a class="btn" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+      Follow my adventures ↗
+    </a>
+  </section>
+</main>
+
+<footer>
+  <p>© <span id="year"></span> Girl Next Door Travels · Made with ♡ and a little wanderlust.</p>
+  <p style="margin-top:6px"><a href="#home">Back to top ↑</a></p>
+</footer>
+
+<script>
+  // Itinerary expand/collapse buttons
+  document.querySelectorAll(".details-btn").forEach(button => {
+    button.addEventListener("click", () => {
+      const card = button.closest(".trip-card");
+      const itinerary = card.querySelector(".itinerary");
+      const isOpen = itinerary.classList.toggle("open");
+
+      button.textContent = isOpen ? "Hide plan −" : "View plan +";
+      button.setAttribute("aria-expanded", String(isOpen));
+    });
+  });
+
+  // Trip category filters
+  document.querySelectorAll(".filter").forEach(button => {
+    button.addEventListener("click", () => {
+      document.querySelectorAll(".filter").forEach(item => {
+        item.classList.remove("active");
+      });
+
+      button.classList.add("active");
+      const category = button.dataset.filter;
+
+      document.querySelectorAll(".trip-card").forEach(card => {
+        card.style.display =
+          category === "all" || card.dataset.category === category
+            ? ""
+            : "none";
+      });
+    });
+  });
+
+  // Live travel budget calculator
+  const fields = ["people", "days", "hotel", "daily", "transport"];
+
+  function calculateBudget() {
+    const people = Math.max(1, Number(document.getElementById("people").value) || 1);
+    const days = Math.max(1, Number(document.getElementById("days").value) || 1);
+    const hotel = Math.max(0, Number(document.getElementById("hotel").value) || 0);
+    const daily = Math.max(0, Number(document.getElementById("daily").value) || 0);
+    const transport = Math.max(0, Number(document.getElementById("transport").value) || 0);
+
+    const rooms = Math.ceil(people / 2);
+    const total = (rooms * hotel * Math.max(0, days - 1))
+                + (people * daily * days)
+                + transport;
+
+    document.getElementById("total").textContent =
+      total.toLocaleString("en-IN", {
+        style: "currency",
+        currency: "INR",
+        maximumFractionDigits: 0
+      });
+
+    document.getElementById("perPerson").textContent =
+      (total / people).toLocaleString("en-IN", {
+        style: "currency",
+        currency: "INR",
+        maximumFractionDigits: 0
+      }) + " per person";
+  }
+
+  fields.forEach(id => {
+    document.getElementById(id).addEventListener("input", calculateBudget);
+  });
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+  calculateBudget();
+</script>
+
+</body>
+</html>
